@@ -1,0 +1,13 @@
+name "lzwford"
+description "libncompress binding for D"
+authors "Laszlo Szeremi"
+copyright "Copyright © 2019, Laszlo Szeremi"
+license "Unlicense"
+target "library"
+libs "libncompress"
+subPackage {
+	name "testLinkage"
+	sourcePaths "testsource" "source"
+	libs "libncompress"
+	target "application"
+}
