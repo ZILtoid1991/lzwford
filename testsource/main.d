@@ -15,7 +15,8 @@ void main(string[] args)
     source = File(args[1], "rb");
     buffer2.length = cast(size_t) source.size;
     buffer2 = source.rawRead(buffer2);
-    extern (C) int memoryReader(ubyte* bytes, size_t numBytes, void* rwCtxt)
+    // extern (C) int memoryReader(ubyte* bytes, size_t numBytes, void* rwCtxt)
+    int memoryReader(ubyte* bytes, size_t numBytes, void* rwCtxt)
     {
         import core.stdc.string : memcpy;
 		writeln(numBytes," is being read from buffer2. Remaining: ", buffer2.length - position);
@@ -34,16 +35,18 @@ void main(string[] args)
             numBytes = buffer2.length - position;
             memcpy(bytes, buffer2.ptr + position, numBytes);
             position += numBytes;
-            return cast(int) numBytes;
+            return cast(int)numBytes;
         }
     }
 
-    extern (C) int memoryWriter(const(ubyte)* bytes, size_t numBytes, void* rwCtxt)
+    // extern (C) int memoryWriter(const(ubyte)* bytes, size_t numBytes, void* rwCtxt)
+    int memoryWriter(const(ubyte)* bytes, size_t numBytes, void* rwCtxt)
     {
         //import core.stdc.string : memcpy;
+        writeln(numBytes, " is being written to buffer1. Already in: ", buffer1.length);
         const(ubyte)[] buffer3 = bytes[0 .. numBytes];
         buffer1 ~= buffer3.dup;
-        return numBytes;
+        return cast(int)numBytes;
     }
 
     context.reader = &memoryReader;

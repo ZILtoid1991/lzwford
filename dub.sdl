@@ -4,10 +4,10 @@ authors "Laszlo Szeremi"
 copyright "Copyright © 2019, Laszlo Szeremi"
 license "Unlicense"
 target "library"
-libs "libncompress"
+/* libs "libncompress" */
 subPackage {
-	name "testLinkage"
+	name "testlinkage"
 	sourcePaths "testsource" "source"
-	libs "libncompress"
+	/* libs "libncompress" */
 	target "application"
 }
