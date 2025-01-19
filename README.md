@@ -7,4 +7,4 @@ The LZW algorithm is used in many file formats that were established in the past
 
 The libncompress library can be found here: https://github.com/als123/libncompress
 
-For Windows, I've used an LLVM7.0 based clang, and created the .lib file using llvm-lib. Commening out the unistd.h line doesn't seem to affect the library, this might be a quick fix for that file. I put the libncompress.lib file into my project folder.
+The code has been ported to D to minimize potential dependency hell issues related to some lesser known 3rd party libraries.
